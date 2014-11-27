@@ -7,32 +7,41 @@ public class Setup : MonoBehaviour {
     public int _cellDistance;
     private int tempCellDistance;
 
-    const int boardSize = 8;
+    public int _boardSize;
+    float quadrantSize;
+    float offset;
 
 	// Use this for initialization
 	void Start () {
-        _cells = new GameObject[8,8];
-        for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
+        quadrantSize = _boardSize/2.0f;
+        offset = 0.5f;
+        _cells = new GameObject[_boardSize,_boardSize];
+
+        for (int x = 0; x < _boardSize; x++) {
+            for (int y = 0; y < _boardSize; y++) {
                 _cells[x,y] = (GameObject) Instantiate (
                         _cellPrefab, 
-                        new Vector3((4-x)*_cellDistance, 0, (y-4)*_cellDistance), 
+                        new Vector3((quadrantSize-x-offset)*_cellDistance, 
+                            0, (quadrantSize-y-offset)*_cellDistance), 
                         Quaternion.identity); 
-                Debug.Log("Cell created");
+                // Debug.Log("Cell created");
             }
         }
     }
 
     // Update is called once per frame
     void Update () {
+        // when transforming distance bewteen cells
         if (_cellDistance != tempCellDistance) {
-            for (int x = 0; x < 8; x++) {
-                for (int y = 0; y < 8; y++) {
-                    _cells[x,y].transform.position = new Vector3((4-x)*_cellDistance, 0, (y-4)*_cellDistance);
+            for (int x = 0; x < _boardSize; x++) {
+                for (int y = 0; y < _boardSize; y++) {
+                    _cells[x,y].transform.position = 
+                        new Vector3((quadrantSize-x-offset)*_cellDistance, 
+                                0, (quadrantSize-y-offset)*_cellDistance);
                 }
             }
             tempCellDistance = _cellDistance;
-            Debug.Log("Cell created");
+            // Debug.Log("Cell moved");
         }
     }
 }
