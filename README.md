@@ -2,11 +2,11 @@
 
 Othello, also known as [Reversi](http://en.wikipedia.org/wiki/Reversi), 
 is an abstract strategy game that has been around for over a hundred 
-years (follow the link for more info about the gameplay.
+years (follow the link for more info about the gameplay).
 
 This implementation of Reversi uses player vs computer mode. The AI uses 
 the [MiniMax]() algorithm with alpha-beta pruning to discover the most
-effective move for the computer. 
+advantageous move for the computer. 
 
 ### Files of interest:
 
